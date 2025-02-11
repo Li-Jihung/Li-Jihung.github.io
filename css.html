@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Animation 示例</title>
+    <style>
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(250px);
+            }
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: coral;
+            animation: fadeInSlide 2s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <h2>CSS Animation</h2>
+    <div class="box"></div>
+</body>
+</html>

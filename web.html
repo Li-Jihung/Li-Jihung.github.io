@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Animation API 示例</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: dodgerblue;
+            opacity: 0; /* 初始設為透明 */
+        }
+    </style>
+</head>
+<body>
+    <h2>Web Animation API</h2>
+    <div class="box"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const box = document.querySelector(".box");
+
+            box.animate([
+                { opacity: 0, transform: "translateX(-100px)" },
+                { opacity: 1, transform: "translateX(250px)" }
+            ], {
+                duration: 2000,
+                easing: "ease-in-out",
+                fill: "forwards"
+            });
+        });
+    </script>
+</body>
+</html>
