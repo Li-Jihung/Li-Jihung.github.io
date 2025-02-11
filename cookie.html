@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie 與 Storage 演示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Cookie 與 Storage 操作示例</h2>
+
+    <!-- Cookie 操作 -->
+    <h3>Cookie 操作</h3>
+    <button onclick="setCookie('username', 'JohnDoe', 7)">設置 Cookie (7 天)</button>
+    <button onclick="alert(getCookie('username'))">讀取 Cookie</button>
+    <button onclick="deleteCookie('username')">刪除 Cookie</button>
+
+    <!-- localStorage 操作 -->
+    <h3>localStorage 操作</h3>
+    <button onclick="localStorage.setItem('user', 'Alice')">設置 localStorage</button>
+    <button onclick="alert(localStorage.getItem('user'))">讀取 localStorage</button>
+    <button onclick="localStorage.removeItem('user')">刪除 localStorage</button>
+
+    <!-- sessionStorage 操作 -->
+    <h3>sessionStorage 操作</h3>
+    <button onclick="sessionStorage.setItem('sessionID', '12345')">設置 sessionStorage</button>
+    <button onclick="alert(sessionStorage.getItem('sessionID'))">讀取 sessionStorage</button>
+    <button onclick="sessionStorage.removeItem('sessionID')">刪除 sessionStorage</button>
+
+    <!-- Web Animation API 操作 -->
+    <h3>Web Animation API 動畫</h3>
+    <div class="box" style="width:100px; height:100px; background:tomato;"></div>
+    <button onclick="animateBox()">播放動畫</button>
+
+    <script>
+        // 設置 Cookie
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+            alert("Cookie 設置成功");
+        }
+
+        // 讀取 Cookie
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                let [key, value] = cookie.split('=');
+                if (key === name) return value;
+            }
+            return null;
+        }
+
+        // 刪除 Cookie
+        function deleteCookie(name) {
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            alert("Cookie 已刪除");
+        }
+
+        // Web Animation API 動畫
+        function animateBox() {
+            document.querySelector(".box").animate([
+                { transform: "translateX(0px)", opacity: 1 },
+                { transform: "translateX(200px)", opacity: 0.5 },
+                { transform: "translateX(0px)", opacity: 1 }
+            ], {
+                duration: 2000,
+                easing: "ease-in-out",
+                iterations: 1
+            });
+        }
+    </script>
+
+</body>
+</html>
