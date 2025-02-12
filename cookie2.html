@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie & Storage Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .box { margin-bottom: 15px; }
+        button { padding: 8px 12px; cursor: pointer; margin: 5px; }
+        input { padding: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <h2>Cookie & Storage 測試</h2>
+    
+    <div class="box">
+        <h3>Cookie 操作</h3>
+        <input type="text" id="cookieInput" placeholder="輸入 Cookie 值">
+        <button onclick="setCookie()">設置 Cookie</button>
+        <button onclick="deleteCookie()">刪除 Cookie</button>
+        <p>Cookie 內容：<span id="cookieDisplay">（無資料）</span></p>
+    </div>
+
+    <div class="box">
+        <h3>LocalStorage 操作</h3>
+        <input type="text" id="localStorageInput" placeholder="輸入 LocalStorage 值">
+        <button onclick="setLocalStorage()">設置 LocalStorage</button>
+        <button onclick="clearLocalStorage()">清除 LocalStorage</button>
+        <p>LocalStorage 內容：<span id="localStorageDisplay">（無資料）</span></p>
+    </div>
+
+    <div class="box">
+        <h3>SessionStorage 操作</h3>
+        <input type="text" id="sessionStorageInput" placeholder="輸入 SessionStorage 值">
+        <button onclick="setSessionStorage()">設置 SessionStorage</button>
+        <button onclick="clearSessionStorage()">清除 SessionStorage</button>
+        <p>SessionStorage 內容：<span id="sessionStorageDisplay">（無資料）</span></p>
+    </div>
+
+    <script>
+        // 設置 Cookie
+        function setCookie() {
+            let value = document.getElementById("cookieInput").value;
+            if (value) {
+                document.cookie = "userData=" + value + "; expires=Fri, 31 Dec 2025 23:59:59 GMT; path=/";
+                showData();
+            }
+        }
+
+        // 讀取 Cookie
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                let [key, value] = cookie.split('=');
+                if (key === name) return value;
+            }
+            return "";
+        }
+
+        // 刪除 Cookie
+        function deleteCookie() {
+            document.cookie = "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+            showData();
+        }
+
+        // 設置 LocalStorage
+        function setLocalStorage() {
+            let value = document.getElementById("localStorageInput").value;
+            if (value) {
+                localStorage.setItem("localData", value);
+                showData();
+            }
+        }
+
+        // 清除 LocalStorage
+        function clearLocalStorage() {
+            localStorage.removeItem("localData");
+            showData();
+        }
+
+        // 設置 SessionStorage
+        function setSessionStorage() {
+            let value = document.getElementById("sessionStorageInput").value;
+            if (value) {
+                sessionStorage.setItem("sessionData", value);
+                showData();
+            }
+        }
+
+        // 清除 SessionStorage
+        function clearSessionStorage() {
+            sessionStorage.removeItem("sessionData");
+            showData();
+        }
+
+        // 顯示 Cookie、LocalStorage、SessionStorage 的內容
+        function showData() {
+            document.getElementById("cookieDisplay").innerText = getCookie("userData") || "（無資料）";
+            document.getElementById("localStorageDisplay").innerText = localStorage.getItem("localData") || "（無資料）";
+            document.getElementById("sessionStorageDisplay").innerText = sessionStorage.getItem("sessionData") || "（無資料）";
+        }
+
+        // 頁面載入時顯示已存的資料
+        window.onload = showData;
+    </script>
+</body>
+</html>
