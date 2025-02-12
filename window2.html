@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pop-up 視窗示例</title>
+</head>
+<body>
+
+    <h2>基本 Pop-up 視窗 2</h2>
+    <button onclick="openUrlPopup()">打開 Google</button>
+
+    <script>
+        function openUrlPopup() {
+            let url = "https://www.google.com";
+            let options = "width=800,height=600,top=100,left=100";
+            let newWindow = window.open(url, "GooglePopup", options);
+            if (!newWindow) {
+                alert("請允許 Pop-up 視窗！");
+            }
+        }
+    </script>
+
+</body>
+</html>
