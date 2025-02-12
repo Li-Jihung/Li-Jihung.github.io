@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pop-up 視窗示例</title>
+</head>
+<body>
+
+    <h2>基本 Pop-up 視窗</h2>
+    <button onclick="openPopup()">開啟 Pop-up</button>
+
+    <script>
+        function openPopup() {
+            let popup = window.open("", "popupWindow", "width=400,height=300");
+            if (popup) {
+                popup.document.write("<h2>這是彈出視窗</h2>");
+                popup.document.write("<p>你可以在這裡放置內容</p>");
+                popup.document.write("<button onclick='window.close()'>關閉</button>");
+            } else {
+                alert("請允許 Pop-up 視窗！");
+            }
+        }
+    </script>
+
+</body>
+</html>
