@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>window.open() Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>window.open() 測試</h2>
+    <p>點擊按鈕或等待 5 秒後，自動開啟 <strong>tw.yahoo.com</strong></p>
+
+    <button onclick="openYahoo()">開啟 Yahoo</button>
+    
+    <script>
+        // 定義開啟 Yahoo 的函式
+        function openYahoo() {
+            window.open("https://tw.yahoo.com", "_blank");
+        }
+
+        // 頁面載入後 5 秒自動開啟
+        setTimeout(openYahoo, 5000);
+    </script>
+
+</body>
+</html>
