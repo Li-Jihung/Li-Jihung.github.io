@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie 測試頁面</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px; margin: 5px; }
+        #cookieDisplay { font-weight: bold; color: blue; }
+    </style>
+</head>
+<body>
+    <h2>Cookie 測試</h2>
+    <p>這個頁面會測試 WebView 是否允許 Cookie 存取。</p>
+    
+    <button onclick="setCookie()">設置 Cookie</button>
+    <button onclick="deleteCookie()">刪除 Cookie</button>
+    <button onclick="showCookie()">讀取 Cookie</button>
+
+    <p>目前的 Cookie：<span id="cookieDisplay">（無資料）</span></p>
+
+    <script>
+        // 設置 Cookie
+        function setCookie() {
+            document.cookie = "testCookie=HelloWebView; path=/; expires=Fri, 31 Dec 2025 23:59:59 GMT";
+            alert("已設置 Cookie！");
+            showCookie();
+        }
+
+        // 讀取 Cookie
+        function showCookie() {
+            let cookies = document.cookie || "（無資料）";
+            document.getElementById("cookieDisplay").innerText = cookies;
+        }
+
+        // 刪除 Cookie
+        function deleteCookie() {
+            document.cookie = "testCookie=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            alert("已刪除 Cookie！");
+            showCookie();
+        }
+
+        // 頁面載入時顯示已存的 Cookie
+        window.onload = showCookie;
+    </script>
+</body>
+</html>
